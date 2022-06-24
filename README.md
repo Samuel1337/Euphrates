@@ -6,8 +6,6 @@
 
 ![homepage](https://github.com/Samuel1337/Euphrates/blob/main/app/assets/images/gifs/home_page.gif)
 
-![categories](https://github.com/Samuel1337/Euphrates/blob/main/app/assets/images/gifs/categories.gif)
-
 ## Techonologies used
 
 - Ruby on Rails
@@ -17,6 +15,8 @@
 - HTML5 and CSS
 - AWS S3 and AWS IAM
 - Heroku
+
+![categories](https://github.com/Samuel1337/Euphrates/blob/main/app/assets/images/gifs/categories.gif)
 
 ## Features
 
