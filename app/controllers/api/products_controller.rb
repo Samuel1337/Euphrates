@@ -12,7 +12,13 @@ class Api::ProductsController < ApplicationController
 
     def search
         query = params[:query]
-        @products = Listing.where('title ILIKE ? OR description ILIKE ? ', "%#{query}%", "%#{query}%") 
+        category = query.split('=').last
+        query = query.split('&').first
+        @products = Product.where(
+            'category ILIKE ? AND title ILIKE ?',
+            "%#{category}%",
+            "%#{query}%"
+            ) 
         if @products.length > 0
             render :index
         else

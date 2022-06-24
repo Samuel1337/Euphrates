@@ -7,7 +7,7 @@ class SearchBar extends React.Component {
 
         this.state = {
             category: "all",
-            search: ""
+            query: ""
         }
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -17,13 +17,9 @@ class SearchBar extends React.Component {
     }
     
     handleSubmit() {
-        // const dropdown = document.querySelector('.search-dropdown').value;
-        // const category = dropdown.options[dropdown.selectedIndex].value;
-        // const input = document.getElementById('search-input').value;
-        
-        // this.setState({ 
-        //     ["search"]: input,
-        // })
+        const query = `${this.state.query}&category=${this.state.category}`
+        this.props.searchProduct(query);
+        this.props.history.push("/search");
     }
 
     displayUpcomingFeature(e) {
@@ -38,9 +34,14 @@ class SearchBar extends React.Component {
         e.currentTarget.disabled = false;
     }
 
-
     handleChange(field) {
-        return e => this.setState({[field]: e.currentTarget.selectedIndex})
+        if (field === "category") {
+            let select = document.getElementById("dropdown");
+            let value = select.options[select.selectedIndex].value;
+            this.setState({[field]: value})
+        } else {
+            return e => this.setState({[field]: e.currentTarget.value})
+        }
     }
 
     render() {
@@ -50,6 +51,7 @@ class SearchBar extends React.Component {
                 <div className="search-bar">
                     <select
                         type="dropdown"
+                        id="dropdown"
                         className="search-dropdown"
                         onChange={()=>this.handleChange("category")}
                     >
@@ -74,8 +76,7 @@ class SearchBar extends React.Component {
                         id="search-input"
                         className="search-input"
                         placeholder="Search for a specific item"
-                        onMouseEnter={this.displayUpcomingFeature}
-                        onMouseLeave={this.removeUpcomingFeature}
+                        onChange={this.handleChange("query")}
                     />
                     <button onClick={this.handleSubmit} className="search-button">
                         <FaSearch />
