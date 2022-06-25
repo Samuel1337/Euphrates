@@ -1,4 +1,4 @@
-import { getAllProducts, getCategoryProducts } from "../actions/product_actions";
+import { clearProducts, getAllProducts, getCategoryProducts } from "../actions/product_actions";
 import { connect } from "react-redux"
 import CategoryIndex from "./categoryIndex"
 
@@ -24,7 +24,8 @@ const mSTP = (state, { match }) => {
 
 const mDTP = dispatch => ({
     getAllProducts: () => dispatch(getAllProducts()), 
-    getCategoryProducts: category => dispatch(getCategoryProducts(category)) 
+    getCategoryProducts: category => dispatch(getCategoryProducts(category)),
+    clearProducts: () => dispatch(clearProducts()) 
 })
 
 export default connect(mSTP, mDTP)(CategoryIndex);

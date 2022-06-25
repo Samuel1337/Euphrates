@@ -1,20 +1,21 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import GridItem from "./gridItem";
+import LoadingPage from "./loadingPage";
 
 class SearchPage extends React.Component {
 
     render() {
         const { products, error } = this.props;
         
-        if (!products || error.error || products[0] === undefined ) return (
-            <div class="search-page">
-                <Link to="/"><img class="empty-search" src={window.empty_search} /></Link>;
+        if (error.error) return (
+            <div className="search-page">
+                <Link to="/"><img className="empty-search" src={window.empty_search} /></Link>;
             </div>
         )
-        // if (products[0] === undefined) return null;
-
-
+        
+        if (!products || products[0] === undefined) return LoadingPage;
+        
         return (
             <div className="category-page">
             <div className="category-bar">

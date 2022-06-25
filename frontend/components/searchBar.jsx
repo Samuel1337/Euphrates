@@ -17,9 +17,13 @@ class SearchBar extends React.Component {
     }
     
     handleSubmit() {
-        const query = `${this.state.query}&category=${this.state.category}`
+        const query = `${this.state.query}&category=${this.state.category}`;
+        this.props.clearProducts();
+        this.props.clearSearchErrors();
         this.props.searchProduct(query);
-        this.props.history.push("/search");
+        if (!this.props.location.pathname.includes("search")) {
+            this.props.history.push("/search");
+        }
     }
 
     displayUpcomingFeature(e) {

@@ -14,11 +14,14 @@ class Api::ProductsController < ApplicationController
         query = params[:query]
         category = query.split('=').last
         query = query.split('&').first
+
+        category = "" if (category === "all")
+
         @products = Product.where(
             'category ILIKE ? AND title ILIKE ?',
             "%#{category}%",
             "%#{query}%"
-            ) 
+            )
         if @products.length > 0
             render :index
         else

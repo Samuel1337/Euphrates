@@ -1,5 +1,6 @@
 import React from "react";
 import GridItem from "./gridItem";
+import LoadingPage from "./loadingPage";
 
 class CategoryIndex extends React.Component {
     constructor(props) {
@@ -20,6 +21,7 @@ class CategoryIndex extends React.Component {
     }
     
     makeGetRequest() {
+        this.props.clearProducts();
         if (this.props.category === "all") {
             this.props.getAllProducts();
         } else {
@@ -44,8 +46,9 @@ class CategoryIndex extends React.Component {
     render() {
         const { products } = this.props
         
-        if (!products) return null;
-        if (products[0] === undefined) return null;
+        if (!products || products[0] === undefined) {
+            return LoadingPage;
+        };
 
         let gridItems = this.sortBy('price');
 

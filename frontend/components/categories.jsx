@@ -6,11 +6,30 @@ class Categories extends React.Component {
         super(props);
 
         this.checkWidth = this.checkWidth.bind(this);
+        this.goTo = this.goTo.bind(this);
     }
 
     checkWidth() {
         if (window.innerWidth > 1550) {
-            return (<li><Link to="/categories/automotive-industrial">Automotive &#38; Industrial</Link></li>);
+            return (<li><a onClick={()=>this.goTo('automotive-industrial')}>Automotive &#38; Industrial</a></li>);
+        }
+    }
+
+    goTo(category) {
+        if (category === "all") {
+            this.props.getAllProducts()
+            .then(() => {
+                if (!this.props.location.pathname.includes(category)) {
+                    this.props.history.push(`/categories/${category}`)
+                }
+            })
+        } else {
+            this.props.getCategoryProducts(category)
+            .then(() => {
+                if (!this.props.location.pathname.includes(category)) {
+                    this.props.history.push(`/categories/${category}`)
+                }
+            })
         }
     }
 
@@ -18,18 +37,18 @@ class Categories extends React.Component {
         return (
             <nav id="header-blue">
                 <ul>
-                    <li><Link to="/categories/all">All Products</Link></li>
-                    <li><Link to="/categories/electronics">Electronics</Link></li>
-                    <li><Link to="/categories/computers">Computers</Link></li>
-                    <li><Link to="/categories/smart-home">Smart Home</Link></li>
-                    <li><Link to="/categories/home-garden-tools">Home, Garden &#38; Tools</Link></li>
-                    <li><Link to="/categories/pet-supplies">Pet Supplies</Link></li>
-                    <li><Link to="/categories/food-grocery">Food &#38; Grocery</Link></li>
-                    <li><Link to="/categories/beauty-health">Beauty &#38; Health</Link></li>
-                    <li><Link to="/categories/toys-kids-baby">Toys, Kids &#38; Baby</Link></li>
-                    <li><Link to="/categories/handmade">Handmade</Link></li>
-                    <li><Link to="/categories/sports">Sports</Link></li>
-                    <li><Link to="/categories/outdoors">Outdoors</Link></li>
+                    <li><a onClick={()=>this.goTo('all')}>All Products</a></li>
+                    <li><a onClick={()=>this.goTo('electronics')}>Electronics</a></li>
+                    <li><a onClick={()=>this.goTo('computers')}>Computers</a></li>
+                    <li><a onClick={()=>this.goTo('smart-home')}>Smart Home</a></li>
+                    <li><a onClick={()=>this.goTo('home-garden-tools')}>Home, Garden &#38; Tools</a></li>
+                    <li><a onClick={()=>this.goTo('pet-supplies')}>Pet Supplies</a></li>
+                    <li><a onClick={()=>this.goTo('food-grocery')}>Food &#38; Grocery</a></li>
+                    <li><a onClick={()=>this.goTo('beauty-health')}>Beauty &#38; Health</a></li>
+                    <li><a onClick={()=>this.goTo('toys-kids-baby')}>Toys, Kids &#38; Baby</a></li>
+                    <li><a onClick={()=>this.goTo('handmade')}>Handmade</a></li>
+                    <li><a onClick={()=>this.goTo('sports')}>Sports</a></li>
+                    <li><a onClick={()=>this.goTo('outdoors')}>Outdoors</a></li>
                     {this.checkWidth()}
                 </ul>
             </nav>

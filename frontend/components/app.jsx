@@ -1,24 +1,24 @@
-import React from 'react';
-import Footer from './footer';
-import { Link } from 'react-router-dom';
-import Categories from './categories';
-import { Redirect } from 'react-router-dom';
-import PurchasePage from './purchasePage';
-import { AuthRoute } from '../util/route_util';
-import HomeContainer from './homeContainer';
-import { Route, Switch } from 'react-router-dom';
-import UnderConstruction from './under_construction';
-import GreetingContainer from './greetingContainer';
-import cartIndexContainer from './cartIndexContainer';
-import SearchBarContainer from './searchBarContainer';
-import loginFormContainer from './loginFormContainer';
-import signupFormContainer from './signupFormContainer';
-import SearchPageContainer from './searchPageContainer';
-import ProductShowContainer from './productShowContainer';
-import CartGreetingContainer from './cartGreetingContainer';
-import CategoryIndexContainer from './categoryIndexContainer';
-import editReviewFormContainer from './editReviewFormContainer';
 import createReviewFormContainer from './createReviewFormContainer';
+import editReviewFormContainer from './editReviewFormContainer';
+import CategoryIndexContainer from './categoryIndexContainer';
+import CartGreetingContainer from './cartGreetingContainer';
+import ProductShowContainer from './productShowContainer';
+import SearchPageContainer from './searchPageContainer';
+import CategoriesContainer from './categoriesContainer';
+import signupFormContainer from './signupFormContainer';
+import loginFormContainer from './loginFormContainer';
+import SearchBarContainer from './searchBarContainer';
+import cartIndexContainer from './cartIndexContainer';
+import GreetingContainer from './greetingContainer';
+import UnderConstruction from './under_construction';
+import { Route, Switch } from 'react-router-dom';
+import HomeContainer from './homeContainer';
+import { AuthRoute } from '../util/route_util';
+import PurchasePage from './purchasePage';
+import { Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import Footer from './footer';
+import React from 'react';
 
 const App = () => (
   <div>
@@ -29,7 +29,7 @@ const App = () => (
         <GreetingContainer />
         <CartGreetingContainer />
       </nav>
-      <Categories />
+      <CategoriesContainer />
     </header>
      
     <div id="body">
