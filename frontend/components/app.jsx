@@ -20,7 +20,21 @@ import { Link } from 'react-router-dom';
 import Footer from './footer';
 import React from 'react';
 
-const App = () => (
+const App = () => {
+  if (window.innerWidth < 1000) {
+    return (
+      <div class="unsupported">
+        <br/>
+        <span>Unsupported Screen Size</span>
+        <br/>
+        <span>Mobile Version Coming Soon</span>
+        <br/>
+        <img src={window.logo_blue} alt="" />
+      </div>
+    )
+  }
+
+  return (
   <div>
     <header>
       <nav id="header-black">
@@ -52,7 +66,7 @@ const App = () => (
       <Footer/>
     </footer>
   </div>
-);
+)};
 
 export default App;
 

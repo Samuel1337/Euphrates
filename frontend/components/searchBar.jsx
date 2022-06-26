@@ -12,11 +12,16 @@ class SearchBar extends React.Component {
 
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
-        this.displayUpcomingFeature = this.displayUpcomingFeature.bind(this);
-        this.removeUpcomingFeature = this.removeUpcomingFeature.bind(this);
+        this.reset = this.reset.bind(this);
     }
-    
+
     handleSubmit() {
+
+        if (this.state.category === "all" && this.state.query === "") {
+            this.props.history.push("/");
+            return null;
+        } 
+
         const query = `${this.state.query}&category=${this.state.category}`;
         this.props.clearProducts();
         this.props.clearSearchErrors();
@@ -24,27 +29,27 @@ class SearchBar extends React.Component {
         if (!this.props.location.pathname.includes("search")) {
             this.props.history.push("/search");
         }
+        this.reset();
     }
 
-    displayUpcomingFeature(e) {
-        e.currentTarget.value = "Search feature coming soon!";
-        e.currentTarget.style = "transition: 100ms; background-color: lightyellow; color: orange";
-        e.currentTarget.disabled = true;
-    }
-
-    removeUpcomingFeature(e) {
-        e.currentTarget.value = "";
-        e.currentTarget.style = "transition: 500ms; background-color: white; color: black";
-        e.currentTarget.disabled = false;
+    reset() {
+        const select = document.getElementById("dropdown");
+        const input =  document.getElementById("search-input");
+        select.selectedIndex = 0;
+        input.value = "";
+        this.setState({
+            category: "all",
+            query: ""
+        })
     }
 
     handleChange(field) {
         if (field === "category") {
-            let select = document.getElementById("dropdown");
-            let value = select.options[select.selectedIndex].value;
-            this.setState({[field]: value})
+            const select = document.getElementById("dropdown");
+            const value = select.options[select.selectedIndex].value;
+            this.setState({[field]: value});
         } else {
-            return e => this.setState({[field]: e.currentTarget.value})
+            return e => this.setState({[field]: e.currentTarget.value});
         }
     }
 
@@ -59,19 +64,19 @@ class SearchBar extends React.Component {
                         className="search-dropdown"
                         onChange={()=>this.handleChange("category")}
                     >
-                        <option value="all">All</option>
-                        <option value="electronics">Electronics</option>
-                        <option value="computers">Computers</option>
-                        <option value="smart-Home">Smart Home</option>
-                        <option value="home-garden-tools">Home, Garden &#38; Tools</option>
-                        <option value="pet-supplies">Pet Supplies</option>
-                        <option value="food-grocery">Food &#38; Grocery</option>
-                        <option value="beauty-health">Beauty &#38; Health</option>
-                        <option value="toys-kids-baby">Toys, Kids &#38; Baby</option>
-                        <option value="handmade">Handmade</option>
-                        <option value="sports">Sports</option>
-                        <option value="outdoors">Outdoors</option>
-                        <option value="automotive-industrial">Automotive &#38; Industrial</option>
+                        <option value="all"><span>All</span></option>
+                        <option value="electronics"><span>Electronics</span></option>
+                        <option value="computers"><span>Computers</span></option>
+                        <option value="smart-Home"><span>Smart Home</span></option>
+                        <option value="home-garden-tools"><span>Home, Garden &#38; Tools</span></option>
+                        <option value="pet-supplies"><span>Pet Supplies</span></option>
+                        <option value="food-grocery"><span>Food &#38; Grocery</span></option>
+                        <option value="beauty-health"><span>Beauty &#38; Health</span></option>
+                        <option value="toys-kids-baby"><span>Toys, Kids &#38; Baby</span></option>
+                        <option value="handmade"><span>Handmade</span></option>
+                        <option value="sports"><span>Sports</span></option>
+                        <option value="outdoors"><span>Outdoors</span></option>
+                        <option value="automotive-industrial"><span>Automotive &#38; Industrial</span></option>
                     </select>
 
                     {/* Search Bar */}
@@ -80,6 +85,7 @@ class SearchBar extends React.Component {
                         id="search-input"
                         className="search-input"
                         placeholder="Search for a specific item"
+                        autoComplete="off"
                         onChange={this.handleChange("query")}
                     />
                     <button onClick={this.handleSubmit} className="search-button">

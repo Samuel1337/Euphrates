@@ -6,7 +6,7 @@ class LoadingPage extends React.Component {
         const array = [0,1,2,3,4,5,6,7]
 
         return (
-            <div className="category-page" style="background-color: green">
+            <div className="category-page" style="height: 100vh; background-color: green">
             <div className="category-bar">
                 Loading items
             </div>

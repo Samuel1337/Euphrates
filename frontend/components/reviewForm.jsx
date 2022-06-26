@@ -59,7 +59,6 @@ class ReviewForm extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
         this.renderError();
-        
         if (this.state.title !== "" || this.state.body !== "") {
             console.log(this.props)
             this.props.action(this.state)

@@ -45,9 +45,27 @@ class CategoryIndex extends React.Component {
 
     render() {
         const { products } = this.props
+        const array = [0,1,2,3,4,5,6,7]
         
         if (!products || products[0] === undefined) {
-            return LoadingPage;
+            return (
+                <div className="blank">
+                <div className="category-bar">
+                    Loading items
+                </div>
+                    <div className="grid-container">
+                        <div className="grid">
+                            {array.map(num => (
+                                <div className="grid-item">
+                                    <div className="grid-image-container"></div>
+                                    <div className="grid-rating"></div>
+                                </div>
+                                ))
+                            }    
+                        </div>
+                    </div>
+                </div>
+            )
         };
 
         let gridItems = this.sortBy('price');

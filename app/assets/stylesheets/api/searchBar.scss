@@ -23,13 +23,22 @@
     border: 0;
     border-right: 1px solid #cdcdcd;
     border-radius: 4px 0 0 4px;
+    display: inline-block;
+    select {
+        display: inline-block;
+        width: auto;
+    }
     option {
         font-weight: normal;
-        display: block;
-        white-space: nowrap;
+        display: inline-block;
         min-height: 1.2em;
         padding: 0px 2px 1px;
         color: black;
+        span {
+            float: left;
+            white-space: nowrap;
+            overflow: hidden;
+        }
     }
 }
 

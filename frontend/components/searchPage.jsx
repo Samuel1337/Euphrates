@@ -10,7 +10,7 @@ class SearchPage extends React.Component {
         
         if (error.error) return (
             <div className="search-page">
-                <Link to="/"><img className="empty-search" src={window.empty_search} /></Link>;
+                <Link to="/"><img className="empty-search" src={window.empty_search} /></Link>
             </div>
         )
         
