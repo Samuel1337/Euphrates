@@ -76,7 +76,7 @@ class ReviewForm extends React.Component {
             payload["id"] = this.state.id;
         }
 
-        if (!this.state.modified && this.state.title !== "" && this.state.body !== "") {
+        if (!this.state.modified && this.state.title !== "" && this.state.body !== "" && this.state.rating === this.props.review.rating) {
             this.props.history.push(`/products/${this.props.match.params.productId}`);
             return null;
         }
