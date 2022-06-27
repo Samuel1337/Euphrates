@@ -64,19 +64,19 @@ class SearchBar extends React.Component {
                         className="search-dropdown"
                         onChange={()=>this.handleChange("category")}
                     >
-                        <option value="all"><span>All</span></option>
-                        <option value="electronics"><span>Electronics</span></option>
-                        <option value="computers"><span>Computers</span></option>
-                        <option value="smart-Home"><span>Smart Home</span></option>
-                        <option value="home-garden-tools"><span>Home, Garden &#38; Tools</span></option>
-                        <option value="pet-supplies"><span>Pet Supplies</span></option>
-                        <option value="food-grocery"><span>Food &#38; Grocery</span></option>
-                        <option value="beauty-health"><span>Beauty &#38; Health</span></option>
-                        <option value="toys-kids-baby"><span>Toys, Kids &#38; Baby</span></option>
-                        <option value="handmade"><span>Handmade</span></option>
-                        <option value="sports"><span>Sports</span></option>
-                        <option value="outdoors"><span>Outdoors</span></option>
-                        <option value="automotive-industrial"><span>Automotive &#38; Industrial</span></option>
+                        <option value="all">All</option>
+                        <option value="electronics">Electronics</option>
+                        <option value="computers">Computers</option>
+                        <option value="smart-Home">Smart Home</option>
+                        <option value="home-garden-tools">Home, Garden &#38; Tools</option>
+                        <option value="pet-supplies">Pet Supplies</option>
+                        <option value="food-grocery">Food &#38; Grocery</option>
+                        <option value="beauty-health">Beauty &#38; Health</option>
+                        <option value="toys-kids-baby">Toys, Kids &#38; Baby</option>
+                        <option value="handmade">Handmade</option>
+                        <option value="sports">Sports</option>
+                        <option value="outdoors">Outdoors</option>
+                        <option value="automotive-industrial">Automotive &#38; Industrial</option>
                     </select>
 
                     {/* Search Bar */}
