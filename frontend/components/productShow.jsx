@@ -1,7 +1,6 @@
 import React from "react";
 import { FaStar } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { getCartItemsById } from "../actions/cart_actions";
 import ReviewsIndexContainer from "./reviewsIndexContainer";
 
 class ProductShow extends React.Component {
