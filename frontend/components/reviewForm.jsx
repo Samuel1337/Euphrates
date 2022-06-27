@@ -20,6 +20,7 @@ class ReviewForm extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.update = this.update.bind(this);
         this.username = this.username.bind(this);
+        this.originalRating = this.originalRating.bind(this);
     }
 
     componentDidMount() {
@@ -72,7 +73,7 @@ class ReviewForm extends React.Component {
             product_id: this.state.productId
         };
 
-        if (!!this.state.id) {
+        if (!!this.state.rating) {
             payload["id"] = this.state.id;
         }
 
@@ -84,6 +85,14 @@ class ReviewForm extends React.Component {
         if (this.state.title !== "" && this.state.body !== "") {
             this.props.action(payload)
                 .then(()=>this.props.history.push(`/products/${this.props.match.params.productId}`));
+        }
+    }
+
+    originalRating() {
+        if (this.props.review) {
+            return this.props.review.rating;
+        } else {
+            return 3;
         }
     }
 
@@ -131,7 +140,7 @@ class ReviewForm extends React.Component {
                     <div className="review-rating">
                         <h2>Overall rating</h2>
                         <div className="stars">
-                            <StarRating getRating={this.getRating} />
+                            <StarRating originalRating={this.originalRating()} getRating={this.getRating} />
                         </div>
                     </div>
                     <div className="review-title">
