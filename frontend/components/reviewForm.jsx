@@ -53,7 +53,7 @@ class ReviewForm extends React.Component {
 
     getRating(value) {
         if (this.props.match.params.reviewId !== this.state.id) {
-            this.setState({["id"]: this.props.match.params.reviewId, modified: true})
+            this.setState({["id"]: this.props.match.params.reviewId})
         }
         if (value !== this.state.rating) {
             this.setState({["rating"]: value, modified: true});
@@ -63,13 +63,26 @@ class ReviewForm extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
         this.renderError();
-        if (!this.state.modified) {
+
+        let payload = {
+            rating: this.state.rating,
+            title: this.state.title,
+            body: this.state.body,
+            user_id: this.state.userId,
+            product_id: this.state.productId
+        };
+
+        if (!!this.state.id) {
+            payload["id"] = this.state.id;
+        }
+
+        if (!this.state.modified && this.state.title !== "" && this.state.body !== "") {
             this.props.history.push(`/products/${this.props.match.params.productId}`);
             return null;
         }
 
         if (this.state.title !== "" && this.state.body !== "") {
-            this.props.action(this.state)
+            this.props.action(payload)
                 .then(()=>this.props.history.push(`/products/${this.props.match.params.productId}`));
         }
     }
@@ -77,13 +90,12 @@ class ReviewForm extends React.Component {
     update(field) {
         return e => {
             if (this.props.match.params.reviewId !== this.state.id) {
-                this.setState({["id"]: this.props.match.params.reviewId, modified: true})
+                this.setState({["id"]: this.props.match.params.reviewId})
             }
             if (this.state.userId === "") {
                 this.setState({["userId"]: this.props.currentUser.id, modified: true});
                 this.setState({["productId"]: this.props.product.id, modified: true});
             }
-            // this.getRating();
             this.setState({[field]: e.currentTarget.value, modified: true});
         }
     }
@@ -100,7 +112,7 @@ class ReviewForm extends React.Component {
             this.props.history.push(`/products/${this.state.productId}`);
         };
 
-        const { product, currentUser, formType } = this.props    
+        const { product, formType } = this.props    
 
         return (
             <div className="review-page">
