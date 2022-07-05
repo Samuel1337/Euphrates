@@ -1,17 +1,23 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
 class Categories extends React.Component {
     constructor(props) {
         super(props);
 
-        this.checkWidth = this.checkWidth.bind(this);
+        this.checkAutomotive = this.checkAutomotive.bind(this);
+        this.checkOutdoors = this.checkOutdoors.bind(this);
         this.goTo = this.goTo.bind(this);
     }
 
-    checkWidth() {
+    checkAutomotive() {
         if (window.innerWidth > 1550) {
             return (<li><a onClick={()=>this.goTo('automotive-industrial')}>Automotive &#38; Industrial</a></li>);
+        }
+    }   
+
+    checkOutdoors() {
+        if (window.innerWidth > 1420) {
+            return (<li><a onClick={()=>this.goTo('outdoors')}>Outdoors</a></li>);
         }
     }
 
@@ -48,8 +54,8 @@ class Categories extends React.Component {
                     <li><a onClick={()=>this.goTo('toys-kids-baby')}>Toys, Kids &#38; Baby</a></li>
                     <li><a onClick={()=>this.goTo('handmade')}>Handmade</a></li>
                     <li><a onClick={()=>this.goTo('sports')}>Sports</a></li>
-                    <li><a onClick={()=>this.goTo('outdoors')}>Outdoors</a></li>
-                    {this.checkWidth()}
+                    {this.checkOutdoors()}
+                    {this.checkAutomotive()}
                 </ul>
             </nav>
         )

@@ -5,6 +5,7 @@ class Carousel extends React.Component {
         super(props);
         this.start = this.start.bind(this);
         this.loop = this.loop.bind(this);
+        this.refresh = this.refresh.bind(this);
     }
 
     componentDidMount() {
@@ -21,9 +22,10 @@ class Carousel extends React.Component {
         this.prevButton = document.querySelector('.carousel__button.left');
 
         // sets width and position
-        this.slideWidth = this.slides[0].getBoundingClientRect().width;
+        
         
         this.setSlidePosition = (slide, index) => {
+            this.slideWidth = this.slides[0].getBoundingClientRect().width;
             slide.style.left = this.slideWidth * index + 'px';
         }
         
@@ -31,6 +33,7 @@ class Carousel extends React.Component {
         
         // moves slides
         this.moveToSlide = (currentSlide, targetSlide) => {
+            this.slides.forEach(this.setSlidePosition);
             this.track.style.transform = 'translateX(-' + targetSlide.style.left + ')';
             currentSlide.classList.remove('current-slide');
             targetSlide.classList.add('current-slide');
@@ -85,9 +88,19 @@ class Carousel extends React.Component {
         }, 5000);
     }
 
+    refresh() {
+        window.addEventListener("resize", () => {
+
+            clearInterval(this.timer);
+            this.start();
+            this.loop();
+        });
+    }
+
     render() {
         return (
             <div className="carousel">
+                {this.refresh()}
                 <button className="carousel__button left">
                     <img src={window.left} alt="" />
                 </button>

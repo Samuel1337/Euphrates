@@ -12,7 +12,11 @@ class SearchBar extends React.Component {
 
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.pressEnter = this.pressEnter.bind(this);
+        this.disableEnter = this.disableEnter.bind(this);
+        this.logKey = this.logKey.bind(this);
         this.reset = this.reset.bind(this);
+        this.pressEnter();
     }
 
     handleSubmit() {
@@ -53,6 +57,21 @@ class SearchBar extends React.Component {
         }
     }
 
+    pressEnter() {
+        document.addEventListener("keydown", this.logKey);
+    }
+    
+    disableEnter() {
+        document.removeEventListener("keydown", this.logKey);
+    }
+    
+    logKey(e) {
+        const input = document.getElementById("search-input");
+        if (e.code === "Enter" && input.value !== "") {
+            this.handleSubmit();
+        }
+    }
+
     render() {
 
         return (
@@ -87,6 +106,8 @@ class SearchBar extends React.Component {
                         placeholder="Search for a specific item"
                         autoComplete="off"
                         onChange={this.handleChange("query")}
+                        onFocus={this.pressEnter}
+                        onBlur={this.disableEnter}
                     />
                     <button onClick={this.handleSubmit} className="search-button">
                         <FaSearch />
