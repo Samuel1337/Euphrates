@@ -10,7 +10,7 @@ class Splash extends React.Component  {
 
     redirect(i) {
         this.props.history.push(`/products/${i}`)
-    } 
+    }
 
     render() {
         return (
@@ -69,3 +69,5 @@ class Splash extends React.Component  {
 }
 
 export default Splash;
+
+// temporary addition
